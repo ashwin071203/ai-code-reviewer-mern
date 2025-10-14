@@ -1,24 +1,45 @@
+# =========================
 # Node.js dependencies
-client/node_modules
-server/node_modules
+# =========================
+node_modules/
+client/node_modules/
+server/node_modules/
 
+# =========================
 # Environment variables
+# =========================
 .env
 .BackEnd/.env
-.Frontend/.env
+Frontend/.env
 
+
+# =========================
 # Logs
+# =========================
+logs/
 *.log
 npm-debug.log*
 
+# =========================
 # Build folders
+# =========================
 dist/
 build/
 
+# =========================
 # OS-specific files
+# =========================
 .DS_Store
 Thumbs.db
 
-# IDE specific
+# =========================
+# IDE / editor files
+# =========================
 .vscode/
 .idea/
+
+# =========================
+# Misc
+# =========================
+*.swp
+*.swo
