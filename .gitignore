@@ -4,8 +4,8 @@ server/node_modules
 
 # Environment variables
 .env
-.client/.env
-.server/.env
+.BackEnd/.env
+.Frontend/.env
 
 # Logs
 *.log
