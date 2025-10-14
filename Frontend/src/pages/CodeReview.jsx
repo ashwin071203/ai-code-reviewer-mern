@@ -8,9 +8,6 @@ import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/github-dark.css";
 import axios from 'axios';
 import { Sparkles, Code, Zap, Terminal } from 'lucide-react';
-
-
-// Styles
 import '../styles/CodeReview.css';
 
 const CodeReview = () => {
@@ -28,7 +25,7 @@ function sum(a, b) {
 
   useEffect(() => {
     prism.highlightAll();
-    
+
     const params = new URLSearchParams(location.search);
     const codeParam = params.get('code');
     if (codeParam) {
@@ -44,20 +41,23 @@ function sum(a, b) {
       timestamp: new Date().toISOString(),
       language: 'javascript'
     };
-    
+
     const updatedReviews = [newReview, ...reviews].slice(0, 10);
     localStorage.setItem('codeReviews', JSON.stringify(updatedReviews));
   };
 
   const reviewCode = async () => {
     if (!code.trim()) return;
-    
+
     setIsLoading(true);
     setReview('');
     setActiveTab('review');
-    
+
     try {
-      const response = await axios.post('http://localhost:3000/ai/get-review', { code });
+      const response = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/ai/get-review`,
+        { code }
+      );
       setReview(response.data);
       saveReview(code, response.data);
     } catch (error) {
@@ -109,9 +109,7 @@ function sum(a, b) {
         </div>
         <div className="flex items-center gap-2">
           <span className={`text-xs px-2 py-1 rounded ${
-            isLoading 
-              ? 'bg-yellow-900/50 text-yellow-300' 
-              : 'bg-green-900/50 text-green-300'
+            isLoading ? 'bg-yellow-900/50 text-yellow-300' : 'bg-green-900/50 text-green-300'
           }`}>
             {isLoading ? 'Analyzing...' : 'Analysis Complete'}
           </span>

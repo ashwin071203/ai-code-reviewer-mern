@@ -1,8 +1,13 @@
-require('dotenv').config()
-const app = require('./src/app')
+require('dotenv').config(); 
+const express = require('express');
+const cors = require('cors');
+const app = require('./src/app');
 
+app.use(cors({
+  origin: process.env.FRONTEND_URL
+}));
 
-
-app.listen(3000, () => {
-    console.log('Server is running on http://localhost:3000')
-})
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on ${PORT}, frontend URL: ${process.env.FRONTEND_URL}`);
+});
